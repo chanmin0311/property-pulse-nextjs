@@ -1,8 +1,12 @@
+import Hero from "@/components/Hero.jsx";
+import InfoBoxes from "@/components/InfoBoxes.jsx";
+
 const HomePage = () => {
     return (
-        <main>
-            <h1 className="text-3xl font-bold text-blue-600">Tailwind Ok</h1>
-        </main>
+        <>
+            <Hero />
+            <InfoBoxes />
+        </>
     );
 };
 
