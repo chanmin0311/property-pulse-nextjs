@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-const PropertyPage = () => {
+const PropertiesPage = () => {
     return (
         <div>
             <h1>Property Page</h1>
@@ -9,4 +9,4 @@ const PropertyPage = () => {
     );
 };
 
-export default PropertyPage;
+export default PropertiesPage;
