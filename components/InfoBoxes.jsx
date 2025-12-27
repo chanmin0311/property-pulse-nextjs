@@ -21,13 +21,13 @@ const InfoBoxes = () => {
                         heading="For Property onwer"
                         backgroundColor="bg-blue-100"
                         buttonInfo={{
-                            text: "Add Propertu",
-                            link: "/properties",
+                            text: "Add Property",
+                            link: "/properties/add",
                             backgroundColor: "bg-blue-500",
                         }}
                     >
                         List your properties and reach potential tenants, Run as
-                        asn Airbnb or long ter,.
+                        an Airbnb or long term.
                     </InfoBox>
                 </div>
             </div>
