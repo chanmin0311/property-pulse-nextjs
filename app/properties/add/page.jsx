@@ -1,12 +1,26 @@
-import Link from "next/link";
+import properties from "@/properties.json";
+import PropertyCard from "@/components/PropertyCard";
 
-const PropertyAdd = () => {
+const PropertiesPage = () => {
+    const baseUrl = "../public/images/properties";
     return (
-        <div>
-            <h1>Property Add</h1>
-            <Link href="/">Go Home</Link>
-        </div>
+        <section className="px-4 py-6">
+            <div className="contailer-xl lg:container m-auto px-4">
+                {properties.length === 0 ? (
+                    <p>No Properties found</p>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        {properties.map((property) => (
+                            <PropertyCard
+                                key={property._id}
+                                property={property}
+                            />
+                        ))}
+                    </div>
+                )}
+            </div>
+        </section>
     );
 };
 
-export default PropertyAdd;
+export default PropertiesPage;
