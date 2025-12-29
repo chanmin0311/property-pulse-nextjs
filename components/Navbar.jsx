@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import logo from "@/assets/images/logo-white.png";
@@ -13,6 +13,39 @@ const Navbar = () => {
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(true);
     const pathname = usePathname();
+
+    // closing the profile menu by clicking the other section of the page
+    const profileMenuRef = useRef(null);
+    useEffect(() => {
+        const handleClickOutside = (event) => {
+            if (
+                profileMenuRef.current &&
+                !profileMenuRef.current.contains(event.target)
+            ) {
+                setIsProfileMenuOpen(false);
+            }
+        };
+
+        if (isProfileMenuOpen) {
+            document.addEventListener("mousedown", handleClickOutside);
+        }
+
+        return () => {
+            document.removeEventListener("mousedown", handleClickOutside);
+        };
+    }, [isProfileMenuOpen]);
+
+    // closing the profile menu by pressing ess key
+    useEffect(() => {
+        const handleEsc = (e) => {
+            if (e.key === "Escape") {
+                setIsProfileMenuOpen(false);
+            }
+        };
+
+        document.addEventListener("keydown", handleEsc);
+        return () => document.removeEventListener("keydown", handleEsc);
+    }, []);
 
     return (
         <nav className="bg-blue-700 border-b border-blue-500">
@@ -144,7 +177,7 @@ const Navbar = () => {
                                 </span>
                             </Link>
                             {/* <!-- Profile dropdown button --> */}
-                            <div className="relative ml-3">
+                            <div className="relative ml-3" ref={profileMenuRef}>
                                 <div>
                                     <button
                                         type="button"
