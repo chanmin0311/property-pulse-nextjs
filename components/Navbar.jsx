@@ -11,6 +11,7 @@ import { FaGoogle } from "react-icons/fa";
 
 const Navbar = () => {
     const { data: session } = useSession();
+    const profileImage = session?.user?.image;
 
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
@@ -223,8 +224,10 @@ const Navbar = () => {
                                         </span>
                                         <Image
                                             className="h-8 w-8 rounded-full"
-                                            src={profileDefault}
+                                            src={profileImage || profileDefault}
                                             alt=""
+                                            width={40}
+                                            height={40}
                                         />
                                     </button>
                                 </div>
@@ -245,6 +248,9 @@ const Navbar = () => {
                                             role="menuitem"
                                             tabIndex="-1"
                                             id="user-menu-item-0"
+                                            onClick={() => {
+                                                setIsProfileMenuOpen(false);
+                                            }}
                                         >
                                             Your Profile
                                         </Link>
@@ -254,6 +260,9 @@ const Navbar = () => {
                                             role="menuitem"
                                             tabIndex="-1"
                                             id="user-menu-item-2"
+                                            onClick={() => {
+                                                setIsProfileMenuOpen(false);
+                                            }}
                                         >
                                             Saved Properties
                                         </Link>
@@ -262,6 +271,10 @@ const Navbar = () => {
                                             role="menuitem"
                                             tabIndex="-1"
                                             id="user-menu-item-2"
+                                            onClick={() => {
+                                                setIsProfileMenuOpen(false);
+                                                signOut();
+                                            }}
                                         >
                                             Sign Out
                                         </button>
