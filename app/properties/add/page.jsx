@@ -1,30 +1,15 @@
-import PropertyCard from "@/components/PropertyCard";
-import { fetchProperties } from "@/utils/requests";
+import PropertyAddForm from "@/components/PropertyAddForm";
 
-const PropertiesPage = async () => {
-    const properties = await fetchProperties();
-
-    // sorting properties by updated date
-    properties.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
+const PropertyAddPage = () => {
     return (
-        <section className="px-4 py-6">
-            <div className="contailer-xl lg:container m-auto px-4">
-                {properties.length === 0 ? (
-                    <p>No Properties found</p>
-                ) : (
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        {properties.map((property) => (
-                            <PropertyCard
-                                key={property._id}
-                                property={property}
-                            />
-                        ))}
-                    </div>
-                )}
+        <section className="bg-blue-50">
+            <div className="container m-auto max-w-2xl py-24">
+                <div className="bg-white px-6 py-8 mb-4 shadow-md rounded-md border m-4 md:m-0">
+                    <PropertyAddForm />
+                </div>
             </div>
         </section>
     );
 };
 
-export default PropertiesPage;
+export default PropertyAddPage;
