@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 const PropertyAddForm = () => {
     const [mounted, setMounted] = useState(false);
     const [fields, setFields] = useState({
+        name: "Boston Commons Retreat",
         type: "Apartment",
         description: "",
         location: {
@@ -19,6 +20,7 @@ const PropertyAddForm = () => {
         rates: {
             weekly: 1100,
             monthly: 4200,
+            nightly: 0,
         },
         seller_info: {
             name: "John Doe",
@@ -98,7 +100,11 @@ const PropertyAddForm = () => {
 
     return (
         mounted && (
-            <form>
+            <form
+                action="/api/properties"
+                method="POST"
+                encType="multipart/form-data"
+            >
                 <h2 className="text-3xl text-center font-semibold mb-6">
                     Add Property
                 </h2>
@@ -216,6 +222,7 @@ const PropertyAddForm = () => {
                             type="number"
                             id="beds"
                             name="beds"
+                            min="0"
                             className="border rounded w-full py-2 px-3"
                             required
                             value={fields.beds}
@@ -233,6 +240,7 @@ const PropertyAddForm = () => {
                             type="number"
                             id="baths"
                             name="baths"
+                            min="0"
                             className="border rounded w-full py-2 px-3"
                             required
                             value={fields.baths}
@@ -250,6 +258,7 @@ const PropertyAddForm = () => {
                             type="number"
                             id="square_feet"
                             name="square_feet"
+                            min="0"
                             className="border rounded w-full py-2 px-3"
                             required
                             value={fields.square_feet}
@@ -505,6 +514,7 @@ const PropertyAddForm = () => {
                                 type="number"
                                 id="weekly_rate"
                                 name="rates.weekly"
+                                min="0"
                                 className="border rounded w-full py-2 px-3"
                                 value={fields.rates.weekly}
                                 onChange={handleChange}
@@ -518,6 +528,7 @@ const PropertyAddForm = () => {
                                 type="number"
                                 id="monthly_rate"
                                 name="rates.monthly"
+                                min="0"
                                 className="border rounded w-full py-2 px-3"
                                 value={fields.rates.monthly}
                                 onChange={handleChange}
@@ -531,6 +542,7 @@ const PropertyAddForm = () => {
                                 type="number"
                                 id="nightly_rate"
                                 name="rates.nightly"
+                                min="0"
                                 className="border rounded w-full py-2 px-3"
                                 value={fields.rates.nightly}
                                 onChange={handleChange}
@@ -549,7 +561,7 @@ const PropertyAddForm = () => {
                     <input
                         type="text"
                         id="seller_name"
-                        name="seller_info.name."
+                        name="seller_info.name"
                         className="border rounded w-full py-2 px-3"
                         placeholder="Name"
                         value={fields.seller_info.name}
